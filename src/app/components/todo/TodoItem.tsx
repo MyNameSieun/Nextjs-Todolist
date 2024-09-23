@@ -1,4 +1,4 @@
-import { deleteTodo, patchTodo } from "@/app/api/todos";
+import { deleteTodo, patchTodo, toggleDoneTodo } from "@/app/api/todos";
 import { EditTodo, Todo } from "@/app/types/todo.type";
 import { useState } from "react";
 
@@ -40,6 +40,15 @@ const TodoItem = ({ todo }: TodoProps) => {
     }
   };
 
+  // 토글
+  const handleToggleDoneButton = async () => {
+    try {
+      await toggleDoneTodo(id, isDone);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <li>
@@ -69,6 +78,9 @@ const TodoItem = ({ todo }: TodoProps) => {
             <button onClick={handleDeleteButton}>삭제</button>
             <button onClick={() => setEditTodo({ title, content })}>
               수정
+            </button>
+            <button onClick={handleToggleDoneButton}>
+              {isDone ? "할 일 취소" : "할 일 완료"}
             </button>
           </>
         )}

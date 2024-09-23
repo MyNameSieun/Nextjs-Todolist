@@ -1,38 +1,22 @@
-"use client";
-
-import { fetchTodos } from "@/app/api/todos";
 import { Todo } from "@/app/types/todo.type";
-import { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
 
-const TodoList = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [loading, setLoading] = useState(true);
+interface TodoListProps {
+  todoTitle: string;
+  todos: Todo[];
+}
 
-  useEffect(() => {
-    const loadTodos = async () => {
-      try {
-        const response = await fetchTodos();
-        setTodos(response.data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadTodos();
-  }, []);
-
-  if (loading) {
-    return <p>로딩중...</p>;
-  }
-
+const TodoList = ({ todoTitle, todos }: TodoListProps) => {
   return (
-    <div>
-      {todos.map((todo) => (
-        <TodoItem todo={todo} key={todo.id} />
-      ))}
-    </div>
+    <>
+      <h1>{todoTitle}</h1>
+
+      <div>
+        {todos.map((todo) => (
+          <TodoItem todo={todo} key={todo.id} />
+        ))}
+      </div>
+    </>
   );
 };
 

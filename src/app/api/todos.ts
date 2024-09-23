@@ -25,3 +25,8 @@ export const deleteTodo = async (id: string) => {
 export const patchTodo = async (id: string, todo: EditTodo) => {
   return await todosAxios.patch(`/todos/${id}`, todo);
 };
+
+// todo 토글
+export const toggleDoneTodo = async (id: string, isDone: boolean) => {
+  return await todosAxios.patch(`/todos/${id}`, { isDone: !isDone });
+};
