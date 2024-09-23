@@ -6,6 +6,8 @@ export interface Todo {
   deadline: string;
 }
 
+export type EditTodo = Pick<Todo, "title" | "content">;
+
 export interface DoneTodo extends Todo {
   isDone: true;
 }

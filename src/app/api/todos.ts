@@ -1,6 +1,6 @@
 import axios from "axios";
 import exp from "constants";
-import { Todo } from "../types/todo.type";
+import { EditTodo, Todo } from "../types/todo.type";
 
 const todosAxios = axios.create({
   baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
@@ -19,4 +19,9 @@ export const addTodo = async (todo: Todo) => {
 // todo 삭제
 export const deleteTodo = async (id: string) => {
   return await todosAxios.delete(`/todos/${id}`);
+};
+
+// todo 수정
+export const patchTodo = async (id: string, todo: EditTodo) => {
+  return await todosAxios.patch(`/todos/${id}`, todo);
 };
