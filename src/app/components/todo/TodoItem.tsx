@@ -1,3 +1,5 @@
+"use client";
+
 import { deleteTodo, patchTodo, toggleDoneTodo } from "@/app/api/todos";
 import { EditTodo, Todo } from "@/app/types/todo.type";
 import { useState } from "react";

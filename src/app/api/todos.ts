@@ -1,5 +1,4 @@
 import axios from "axios";
-import exp from "constants";
 import { EditTodo, Todo } from "../types/todo.type";
 
 const todosAxios = axios.create({
