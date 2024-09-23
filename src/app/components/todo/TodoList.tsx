@@ -1,6 +1,6 @@
 "use client";
 
-import { fetchTodo } from "@/app/api/todos";
+import { fetchTodos } from "@/app/api/todos";
 import { Todo } from "@/app/types/todo.type";
 import { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
@@ -12,7 +12,7 @@ const TodoList = () => {
   useEffect(() => {
     const loadTodos = async () => {
       try {
-        const response = await fetchTodo();
+        const response = await fetchTodos();
         setTodos(response.data);
       } catch (error) {
         console.error(error);
@@ -30,7 +30,7 @@ const TodoList = () => {
   return (
     <div>
       {todos.map((todo) => (
-        <TodoItem />
+        <TodoItem todo={todo} key={todo.id} />
       ))}
     </div>
   );

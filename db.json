@@ -1,13 +1,6 @@
 {
   "todos": [
     {
-      "id": "55ad7b86-de67-493d-8d5d-bd9d84b4c093",
-      "title": "7",
-      "content": "7",
-      "isDone": false,
-      "deadline": "2024. 9. 22."
-    },
-    {
       "id": "d74e920f-a87b-4b96-811a-d2bcd64dac9c",
       "title": "=",
       "content": "=",
@@ -20,6 +13,20 @@
       "content": "호ㅓ",
       "isDone": true,
       "deadline": "2024. 9. 22."
+    },
+    {
+      "id": "6e4c6ee6-67c0-4a73-b8d5-a1f936969aee",
+      "title": "",
+      "content": "",
+      "isDone": false,
+      "deadline": "2024. 9. 23."
+    },
+    {
+      "id": "63f6bdd8-a6b0-4d36-a8df-b54b181d4c22",
+      "title": "6546",
+      "content": "45645",
+      "isDone": false,
+      "deadline": "2024. 9. 23."
     }
   ]
 }
