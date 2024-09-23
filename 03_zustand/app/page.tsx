@@ -8,7 +8,7 @@ import { DoneTodo, WorkingTodo } from "./types/todo-types";
 const Homepage = () => {
   const { todo } = useTodoStore();
   const workingTodo = todo.filter((todo) => !todo.isDone) as WorkingTodo[];
-  const doneTodo = todo.filter((todo) => !todo.isDone) as DoneTodo[];
+  const doneTodo = todo.filter((todo) => todo.isDone) as DoneTodo[];
 
   return (
     <main>
