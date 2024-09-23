@@ -1,3 +1,4 @@
+import { sampleTodo } from "@/assets/sample-todo";
 import { Todo } from "@/types/todo-types";
 import { create } from "zustand";
 
@@ -10,7 +11,7 @@ export interface TodoState {
 }
 
 export const useTodoStore = create<TodoState>()((set) => ({
-  todo: [],
+  todo: [sampleTodo],
   addTodo: (newTodo: Todo) =>
     set((state) => ({ todo: [...state.todo, newTodo] })),
   deleteTodo: (id: string) =>
