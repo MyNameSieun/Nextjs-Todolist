@@ -1,6 +1,6 @@
 "use server";
 
-import { Todo } from "../types/todo-types";
+import { EditTodo, Todo } from "../types/todo-types";
 
 const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
 
@@ -26,6 +26,18 @@ export const deleteTodo = async (id: string) => {
   return data;
 };
 
+// todo 수정
+export const editTodo = async (id: string, { title, content }: EditTodo) => {
+  const response = await fetch(`${baseURL}/todos/${id}`, {
+    method: "PATCH",
+    cache: "no-cache",
+    body: JSON.stringify({ title, content }),
+  });
+  const data = response.json();
+
+  return data;
+};
+
 // todo 토글
 export const toggleTodo = async (id: string, isDone: boolean) => {
   const response = await fetch(`${baseURL}/todos/${id}`, {
@@ -34,5 +46,6 @@ export const toggleTodo = async (id: string, isDone: boolean) => {
     body: JSON.stringify({ isDone }),
   });
   const data = response.json();
+
   return data;
 };
