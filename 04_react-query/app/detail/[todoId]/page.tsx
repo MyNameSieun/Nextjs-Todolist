@@ -4,14 +4,19 @@ import { useSingleTodoQuery } from "@/app/hooks/query/useSingleTodoQuery";
 
 interface TodoDetailPageProps {
   params: {
-    id: string;
+    todoId: string;
   };
 }
 
 const TodoDetailPage = ({ params }: TodoDetailPageProps) => {
-  const { id } = params;
+  const { todoId } = params;
 
-  const { data: todo, isLoading, isError, error } = useSingleTodoQuery({ id });
+  const {
+    data: todo,
+    isLoading,
+    isError,
+    error,
+  } = useSingleTodoQuery({ todoId });
 
   if (isLoading) {
     return <p>로딩 중...</p>;

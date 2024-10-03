@@ -1,12 +1,12 @@
 import { getSingleTodo } from "@/app/services/todos";
 import { useSuspenseQuery } from "@tanstack/react-query";
 interface UseTodoQueryParams {
-  id: string;
+  todoId: string;
 }
 
-export const useSingleTodoQuery = ({ id }: UseTodoQueryParams) => {
+export const useSingleTodoQuery = ({ todoId }: UseTodoQueryParams) => {
   return useSuspenseQuery({
-    queryKey: ["todo", id],
-    queryFn: () => getSingleTodo(id),
+    queryKey: ["todo", todoId],
+    queryFn: () => getSingleTodo(todoId),
   });
 };
