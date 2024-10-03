@@ -19,7 +19,7 @@ const TodoForm = () => {
       title,
       content,
       isDone: false,
-      deadline: "2002",
+      deadline: new Date().toLocaleDateString(),
     };
 
     addTodoMutate(nextTodo);

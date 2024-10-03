@@ -9,22 +9,18 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
+import { Suspense } from "react";
 
 const HomePage = async () => {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: [QUERY_KEYS.TODOS],
-    queryFn: getTodos,
-  });
-
   return (
     <main>
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <TodoForm />
+      <TodoForm />
+      <Suspense fallback={<div>로딩...</div>}>
         <TodoList title="inProgress" />
+      </Suspense>
+      <Suspense fallback={<div>로딩...</div>}>
         <TodoList title="isDone" />
-      </HydrationBoundary>
+      </Suspense>
     </main>
   );
 };

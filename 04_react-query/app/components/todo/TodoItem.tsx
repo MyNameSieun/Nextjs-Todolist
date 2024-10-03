@@ -19,12 +19,15 @@ const TodoItem = ({ todo }: TodoItemProps) => {
   };
 
   return (
-    <li className={`${!isDone ? "" : "line-through"}`}>
+    <li>
       <div className="card card-compact bg-base-100 w-96 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title">{title}</h2>
-          <p>{content}</p>
-          <p>{deadline}</p>
+          <div className={`${!isDone ? "" : "line-through"}`}>
+            <h2 className="card-title">{title}</h2>
+            <p>{content}</p>
+            <p>{deadline}</p>
+          </div>
+
           <div className="card-actions justify-end">
             <button onClick={handleDeleteTodo} className="btn btn-primary">
               삭제하기

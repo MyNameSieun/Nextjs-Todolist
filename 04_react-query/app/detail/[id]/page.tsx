@@ -1,6 +1,5 @@
 "use client";
 
-import TodoItem from "@/app/components/todo/TodoItem";
 import { useSingleTodoQuery } from "@/app/hooks/query/useSingleTodoQuery";
 
 interface TodoDetailPageProps {
@@ -14,12 +13,10 @@ const TodoDetailPage = ({ params }: TodoDetailPageProps) => {
 
   const { data: todo, isLoading, isError, error } = useSingleTodoQuery({ id });
 
-  // 로딩 중일 때 처리
   if (isLoading) {
     return <p>로딩 중...</p>;
   }
 
-  // 에러가 발생했을 때 처리
   if (isError) {
     return (
       <p>
