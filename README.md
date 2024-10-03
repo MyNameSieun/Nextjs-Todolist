@@ -56,7 +56,7 @@
 > 설치한 라이브러리: `@tanstack/react-query`, `axios`, `next-auth`, `zustand`, `daisyui`
 
 ```
-📂 app:
+📂 app
 │   📄 favicon.ico
 │   🎨 globals.css
 │   📄 layout.tsx
@@ -78,6 +78,9 @@
 │   │       📄 page.tsx
 │   └───📂 signup
 │           📄 page.tsx
+│
+├───📂 actions
+│       📄 todo-actions.ts
 │
 ├───📂 api
 │   └───📂 auth
