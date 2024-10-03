@@ -1,71 +1,46 @@
-import { useTodoStore } from "@/store/todo-store";
-import { EditTodo, Todo } from "@/types/todo-types";
+// components/todo/TodoItem.tsx
 import Link from "next/link";
-import { useState } from "react";
+import { Todo } from "@/app/types/todo-types";
+import { useAddTodoMutation } from "@/app/hooks/query/useTodosMutation";
 
 interface TodoItemProps {
   todo: Todo;
 }
 
 const TodoItem = ({ todo }: TodoItemProps) => {
+  const { deleteTodoMutate, toggleTodoMutate } = useAddTodoMutation();
   const { id, title, content, isDone, deadline } = todo;
-  const [editMode, setEditMode] = useState<EditTodo | null>(null);
 
-  const { deleteTodo, editTodo, toggleTodo } = useTodoStore();
-
-  // 삭제
   const handleDeleteTodo = () => {
     const deleteConfirm = window.confirm("정말 삭제하시겠습니까?");
-
     if (deleteConfirm) {
-      deleteTodo(id);
-      alert("삭제 완료!");
-    }
-  };
-
-  // 수정
-  const handleEditButton = () => {
-    if (editMode) {
-      editTodo(id, { title: editMode.title, content: editMode.content });
-      setEditMode(null);
-      alert("수정 완료!");
+      deleteTodoMutate(id);
     }
   };
 
   return (
-    <li>
-      {editMode ? (
-        <>
-          <input
-            value={editMode.title}
-            onChange={(e) =>
-              setEditMode({ ...editMode, title: e.target.value })
-            }
-          />
-          <input
-            value={editMode.content}
-            onChange={(e) =>
-              setEditMode({ ...editMode, content: e.target.value })
-            }
-          />
+    <li className={`${!isDone ? "" : "line-through"}`}>
+      <div className="card card-compact bg-base-100 w-96 shadow-xl">
+        <div className="card-body">
+          <h2 className="card-title">{title}</h2>
+          <p>{content}</p>
           <p>{deadline}</p>
-          <button onClick={handleEditButton}>수정 완료</button>
-          <button onClick={() => setEditMode(null)}>수정 취소</button>
-        </>
-      ) : (
-        <>
-          <Link href={`/details/${id}`}>
-            <h3>{title}</h3>
-            <p>{content}</p>
-            <p>{deadline}</p>
-          </Link>
-          <button onClick={() => toggleTodo(id)}>
-            {isDone ? "취소" : "완료"}
-          </button>
-          <button onClick={handleDeleteTodo}>삭제</button>
-          <button onClick={() => setEditMode({ title, content })}>수정</button>
-        </>
-      )}
+          <div className="card-actions justify-end">
+            <button onClick={handleDeleteTodo} className="btn btn-primary">
+              삭제하기
+            </button>
+            <button
+              onClick={() => toggleTodoMutate({ id, isDone: !isDone })}
+              className="btn btn-error"
+            >
+              완료
+            </button>
+            <Link href={`/detail/${id}`}>
+              <button className="btn btn-secondary">상세보기</button>
+            </Link>
+          </div>
+        </div>
+      </div>
     </li>
   );
 };

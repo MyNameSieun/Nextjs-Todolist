@@ -6,7 +6,7 @@ export interface Todo {
   deadline: string;
 }
 
-export type EditTodo = Pick<Todo, "title" | "content">;
+export type ToggleTodo = Pick<Todo, "id" | "isDone">;
 
 export interface WorkingTodo extends Todo {
   isDone: false;
